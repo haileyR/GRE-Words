@@ -1,6 +1,6 @@
 get '/' do
   if request.xhr?
-    words = Word.all.shuffle[0..19]
+    words = Word.all.shuffle#[0..19]
     meanings = Word.all.map {|w| w.meaning}
     content_type :json
     [words, meanings].to_json

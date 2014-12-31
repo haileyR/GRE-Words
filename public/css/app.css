@@ -112,6 +112,8 @@ h1{
 }
 
 h2{
+  text-align: center;
+  margin: 20px;
   font-size: 2em;
   font-family: "Coming Soon", "Comic Sans MS", "Comic Sans MS", sans-serif;
 }
@@ -153,6 +155,10 @@ select{
   font-size: 1em;
   border: 1px solid #B0C4DE;
   background: transparent;
+}
+
+#startButton{
+  margin-left: 47%;
 }
 
 .word{

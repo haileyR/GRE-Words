@@ -1,11 +1,13 @@
 $(document).ready(function(){
   var DELAY = 700
+  var qCount = 0;
   $('#startButton').on('click', function(){
     $.ajax({
       url: '/'
     }).done(function(response){
       meanings = response[1];
-      response[0].forEach(function(word){
+      initalWords = response[0].slice(0, 19);
+      initalWords.forEach(function(word){
         var wordElement =
           "<div class='word' value='" + word.id +"' "+"style='top:" + (Math.floor(Math.random() * 80)+5)
           +"%; left:" + (Math.floor(Math.random() * 80)+5)
@@ -37,15 +39,23 @@ $(document).ready(function(){
 
       $('#question').on('submit', function(event){
         event.preventDefault();
-        $target = $(event.target);
-        console.log($target.siblings());
-        console.log(meaningP);
+        $target= $(event.target);
         if(question[1] === parseInt($('input[name="response"]:checked').val())){
-          console.log('correct');
+          alert('Correct!! :)');
+          $target.closest('.word').remove();
+          // qCount += 1;
+          // var newWord = response[0][20 + qCount]
+          // var wordElement =
+          //   "<div class='word' value='" + newWord.id +"' "+"style='top:" + (Math.floor(Math.random() * 80)+5)
+          //   +"%; left:" + (Math.floor(Math.random() * 80)+5)
+          //   +"%; font-size: "+((Math.random() * 2)+0.8)+"em'><p class=\'spelling\'>" + newWord.spelling + "</p>"
+          //   +"<p class=\'meaning\' id=\'w"+ newWord.id +"\' style=\'display: none\'>"+newWord.meaning+"</p></div>"
+          // $('#container').append(wordElement);
         }else{
-          console.log('wrong');
+          alert('Wrong!! :(');
+          $($target).replaceWith(meaningP);
         };
-        $($target).replaceWith(meaningP);
+
         $(".spelling").unbind('click');
         $(".spelling").unbind('dblclick');
       });
