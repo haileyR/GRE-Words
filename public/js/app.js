@@ -2,6 +2,8 @@ $(document).ready(function(){
   var DELAY = 700
   var qCount = 0;
   $('#startButton').on('click', function(){
+    $('#startButton').text('Add more words');
+    $('#container').append('<h3>Click to show its meaning, and double click to challenge</h3>');
     $.ajax({
       url: '/'
     }).done(function(response){
